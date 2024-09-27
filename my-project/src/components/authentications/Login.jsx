@@ -32,7 +32,7 @@ const Login = () => {
       />
 
       {/* Overlay with less opacity */}
-      <div className="absolute inset-0 bg-white opacity-50 " />
+      <div className="absolute inset-0 bg-black opacity-50 " />
 
       {/* Centered Content Div */}
       <div className="relative z-10 flex items-center justify-center h-full w-[80%] shadow-black">
