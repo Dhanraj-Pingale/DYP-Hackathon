@@ -8,6 +8,7 @@ This project is a full-stack Campus Management System built using Express.js, Mo
 - [File Structure](#file-structure)
 - [Installation](#installation)
 - [Running the Project](#running-the-project)
+- [Images](#images)
 - [Contributing](#contributing)
 
 ## Features
@@ -134,6 +135,32 @@ PORT=5000
 MONGODB_URI=mongodb://localhost:27017/campus_management
 SESSION_SECRET=your_secret_key
 ```
+
+# Images
+
+## Login Page
+<img width="1440" alt="Screenshot 2024-09-27 at 8 23 00 PM" src="https://github.com/user-attachments/assets/c8440ce6-db24-4f24-ad86-2b2577649aac">
+
+## Student Dashboard
+![Screenshot 2024-09-27 at 8 21 23 PM](https://github.com/user-attachments/assets/7c031db4-4b54-452d-9289-71f8e19392c5)
+![Screenshot 2024-09-27 at 8 21 32 PM](https://github.com/user-attachments/assets/93dee319-fd11-4b86-a2f7-ab839a1fc856)
+![Screenshot 2024-09-27 at 8 21 45 PM](https://github.com/user-attachments/assets/c9daf6a7-62a6-462f-9b1b-d532873598b1)
+
+## Teacher Dashboard
+![Screenshot 2024-09-27 at 8 21 51 PM](https://github.com/user-attachments/assets/29352b2e-a0c8-4d24-980b-a455c5321426)
+![Screenshot 2024-09-27 at 8 21 32 PM](https://github.com/user-attachments/assets/0772f13a-4f0e-4e87-b94b-4ff0d60162cd)
+
+## Admin Dashboard
+![Screenshot 2024-09-27 at 8 22 12 PM](https://github.com/user-attachments/assets/e428757e-7001-4d9f-a38f-28e19491f58e)
+<img width="1440" alt="Screenshot 2024-09-27 at 8 22 16 PM" src="https://github.com/user-attachments/assets/f3901eae-3974-4251-a0a7-907d8fc41ea0">
+<img width="1440" alt="Screenshot 2024-09-27 at 8 22 21 PM" src="https://github.com/user-attachments/assets/988c3ee4-dcbb-4111-a293-c2a16ddee1bd">
+<img width="1440" alt="Screenshot 2024-09-27 at 8 22 25 PM" src="https://github.com/user-attachments/assets/0f2ea570-f51e-48e7-994f-acbd6abfa0cc">
+<img width="1440" alt="Screenshot 2024-09-27 at 8 22 42 PM" src="https://github.com/user-attachments/assets/c978710a-5be1-46f9-9d2c-06a679debd76">
+
+## Club Dashboard
+![Screenshot 2024-09-27 at 8 23 15 PM](https://github.com/user-attachments/assets/6f6e643b-cb00-4db9-b911-41c293104d22)
+![Screenshot 2024-09-27 at 8 23 25 PM](https://github.com/user-attachments/assets/5bab09f2-44cf-4151-9b3a-fda307e08a4c)
+
 
 ## Contributing
 
