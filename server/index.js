@@ -1,9 +1,9 @@
 import express from "express";
-import { MongoClient } from "mongodb";
+import { MongoClient, ObjectId } from "mongodb";
 import cors from "cors";
 import dotenv from "dotenv";
 import passport from "passport";
-import LocalStrategy from "passport-local";
+import { Strategy as LocalStrategy } from "passport-local"; // Correct import
 import bcrypt from "bcryptjs";
 import session from "express-session";
 
@@ -42,42 +42,62 @@ async function main() {
     console.log("Connected to MongoDB");
 
     const usersCollection = client.db("Test").collection("users");
-   
+    const adminCollection = client.db("CollegeAdmin").collection("admins");
 
-    
-
-    // Passport Local Strategy
+    // Passport Local Strategy for User
     passport.use(
-      new LocalStrategy(
-        { usernameField: "email" },
-        async (email, password, done) => {
-          try {
-            const user = await usersCollection.findOne({ email });
-
-            if (!user) {
-              console.log("User not found");
-              return done(null, false, { message: "Incorrect email." });
-            }
-
-            // Compare the password using bcrypt
-            const isValidPassword = await bcrypt.compare(
-              password,
-              user.password
-            );
-
-            if (!isValidPassword) {
-              console.log("Password does not match");
-              return done(null, false, { message: "Incorrect password." });
-            }
-
-            console.log("Login successful");
-            return done(null, user);
-          } catch (error) {
-            console.error("Error during login:", error);
-            return done(error);
+      "user-local",
+      new LocalStrategy({ usernameField: "email" }, async (email, password, done) => {
+        try {
+          const user = await usersCollection.findOne({ email });
+          if (!user) {
+            console.log("User not found");
+            return done(null, false, { message: "Incorrect email." });
           }
+
+          // Compare the password using bcrypt
+          const isValidPassword = await bcrypt.compare(password, user.password);
+
+          if (!isValidPassword) {
+            console.log("Password does not match");
+            return done(null, false, { message: "Incorrect password." });
+          }
+
+          console.log("User login successful");
+          return done(null, user);
+        } catch (error) {
+          console.error("Error during user login:", error);
+          return done(error);
         }
-      )
+      })
+    );
+
+    // Passport Local Strategy for Admin
+    passport.use(
+      "admin-local",
+      new LocalStrategy({ usernameField: "adminID" }, async (adminID, password, done) => {
+        try {
+          const admin = await adminCollection.findOne({ adminID });
+          if (!admin) {
+            console.log("Admin not found");
+            return done(null, false, { message: "Incorrect admin ID." });
+          }
+
+          // Compare the password using bcrypt
+          const isValidAdminPassword = await bcrypt.compare(password, admin.adminPassword);
+
+          if (!isValidAdminPassword) {
+            console.log("Admin password does not match");
+            return done(null, false, { message: "Incorrect password." });
+          }
+
+          console.log("Admin login successful");
+          return done(null, admin);
+        } catch (error) {
+          console.error("Error during admin login:", error);
+          return done(error);
+        }
+      })
     );
 
     // Serialize and deserialize user for session support
@@ -87,9 +107,7 @@ async function main() {
 
     passport.deserializeUser(async (id, done) => {
       try {
-        const user = await usersCollection.findOne({
-          _id: new MongoClient.ObjectId(id),
-        });
+        const user = await usersCollection.findOne({ _id: new ObjectId(id) });
         done(null, user);
       } catch (error) {
         done(error);
@@ -121,27 +139,51 @@ async function main() {
           email,
           password: hashedPassword,
         });
-        res
-          .status(201)
-          .json({
-            message: "User registered successfully",
-            userId: result.insertedId,
-          });
+        res.status(201).json({
+          message: "User registered successfully",
+          userId: result.insertedId,
+        });
       } catch (error) {
         console.error("Error registering user:", error);
         res.status(500).json({ error: "Internal Server Error" });
       }
     });
 
-    // Login route with Passport authentication
-    app.post("/logindb", passport.authenticate("local"), (req, res) => {
-      res.json({
-        message: "Logged in successfully",
-        user: {
-          email: req.user.email,
-          name: req.user.name,
-        },
-      });
+    // User login route
+    app.post("/logindb", (req, res, next) => {
+      passport.authenticate("user-local", (err, user, info) => {
+        if (err) return next(err);
+        if (!user) return res.status(400).json({ error: info.message });
+        
+        req.login(user, (loginErr) => {
+          if (loginErr) return next(loginErr);
+          res.json({
+            message: "Logged in successfully",
+            user: {
+              email: req.user.email,
+              name: req.user.name,
+            },
+          });
+        });
+      })(req, res, next);
+    });
+
+    // Admin login route
+    app.post("/adminlogindb", (req, res, next) => {
+      passport.authenticate("admin-local", (err, admin, info) => {
+        if (err) return next(err);
+        if (!admin) return res.status(400).json({ error: info.message });
+        
+        req.login(admin, (loginErr) => {
+          if (loginErr) return next(loginErr);
+          res.json({
+            message: "Admin logged in successfully",
+            admin: {
+              adminID: req.user.adminID,
+            },
+          });
+        });
+      })(req, res, next);
     });
 
     // Logout route
@@ -163,7 +205,3 @@ app.listen(3000, async () => {
   console.log("Server is running on port 3000");
   await main(); // Call the main function to connect to MongoDB
 });
-
-
-// MONGO_URI="mongodb+srv://ayushmahandule:United14@united14.0pudt.mongodb.net/?retryWrites=true&w=majority&appName=United14"
-// SESSION_SECRET="DEMIGOD"
