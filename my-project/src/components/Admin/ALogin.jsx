@@ -27,7 +27,7 @@ const ALogin = () => {
 
       if (response.status === 200) {
         login(); // Set user as authenticated in AuthContext
-        navigate("/"); // Redirect to homepage
+        navigate("/adashboard"); // Redirect to homepage
       } else {
         setError("Invalid credentials");
       }
