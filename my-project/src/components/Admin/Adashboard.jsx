@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Adashboard = () => {
   const [isOpen, setIsOpen] = useState(true);
@@ -8,27 +9,27 @@ const Adashboard = () => {
   };
 
   return (
-    <div className="flex h-screen bg-black text-white">
+    <div className="flex h-screen bg-white text-zinc-600">
       {/* Sidebar */}
-      <div className={`relative min-h-full ${isOpen ? 'w-64' : 'w-20'} bg-gray-800 duration-300`}>
+      <div className={`relative min-h-full ${isOpen ? 'w-80' : 'w-20'} bg-gray-300 duration-300`}>
         <div className="absolute top-0 right-0 p-4">
-          <button onClick={toggleSidebar} className="text-xl">
+          <button onClick={toggleSidebar} className="text-3xl">
             {isOpen ? '<<' : '>>'} {/* Simple text for toggle */}
           </button>
         </div>
-        <div className="flex flex-col items-start p-6 space-y-4 mt-16">
-          <a href="#student" className="hover:text-gray-300 flex items-center">
-            <span className="text-lg mr-2">👤</span>
+        <div className="flex flex-col text-xl items-start p-9 space-y-8 mt-20">
+          <Link to="/sregister" className="hover:text-gray-900 flex items-center">
+            <span className="text-xl mr-4 ">👤</span>
             {isOpen && <span>Register Student</span>}
-          </a>
-          <a href="#teacher" className="hover:text-gray-300 flex items-center">
-            <span className="text-lg mr-2">👨‍🏫</span>
+          </Link>
+          <Link to="/tregister" className="hover:text-gray-900 flex items-center">
+            <span className="text-xl mr-4">👨‍🏫</span>
             {isOpen && <span>Register Teacher</span>}
-          </a>
-          <a href="#club" className="hover:text-gray-300 flex items-center">
-            <span className="text-lg mr-2">🏢</span>
+          </Link>
+          <Link to="/cregister" className="hover:text-gray-900 flex items-center">
+            <span className="text-xl mr-4">🏢</span>
             {isOpen && <span>Register Club</span>}
-          </a>
+          </Link>
         </div>
       </div>
 
