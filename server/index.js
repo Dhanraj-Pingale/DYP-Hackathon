@@ -419,6 +419,16 @@ async function main() {
       }
     });
 
+    app.get("/notice", async (req, res) => {
+      try {
+        const events = await noticeCollection.find({}).toArray();
+        res.status(200).json(notice);
+      } catch (error) {
+        console.error("Error fetching notice:", error);
+        res.status(500).json({ error: "Internal Server Error" });
+      }
+    });
+
     // Serialize and deserialize user for session support
     passport.serializeUser((user, done) => {
       done(null, user._id);
