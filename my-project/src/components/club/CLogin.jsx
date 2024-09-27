@@ -20,7 +20,7 @@ const CLogin = () => {
 
     try {
       // API call to authenticate user
-      const response = await axios.post("http://localhost:3000/logindb", {
+      const response = await axios.post("http://localhost:3000/clublogindb", {
         clubID,
         password,
       });
@@ -50,7 +50,7 @@ const CLogin = () => {
             <input
               type="number"
               value={clubID}
-              onChange={(e) => setAdminID(e.target.value)}
+              onChange={(e) => setClubID(e.target.value)}
               placeholder="clubID"
               required
               className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-300"
