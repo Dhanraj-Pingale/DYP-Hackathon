@@ -218,10 +218,13 @@ async function main() {
       )
     );
 
+    
+
     // Event creation route
     app.post("/events", async (req, res) => {
       const {
         clubID,
+        clubName,
         eventName,
         eventDescription,
         eventDate,
@@ -232,6 +235,7 @@ async function main() {
       // Ensure all fields are provided
       if (
         !clubID ||
+        !clubName ||
         !eventName ||
         !eventDescription ||
         !eventDate ||
