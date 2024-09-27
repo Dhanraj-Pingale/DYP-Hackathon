@@ -76,7 +76,10 @@ const TTimetable = () => {
     if (error) return <div className="text-red-500 text-center text-lg">{error}</div>;
 
     return (
-        <div className="container mx-auto p-8">
+        <div className='flex justify-center items-center w-screen h-auto bg-orange-200'>
+
+        
+        <div className="container mx-auto p-8 bg-orange-200 ">
               
 
             <h2 className="text-3xl font-bold text-gray-700 mb-6 text-center">Timetable</h2>
@@ -114,6 +117,7 @@ const TTimetable = () => {
                     </tbody>
                 </table>
             </div>
+        </div>
         </div>
     );
 };

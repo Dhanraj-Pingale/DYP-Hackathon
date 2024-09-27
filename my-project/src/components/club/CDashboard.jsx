@@ -24,7 +24,7 @@ const CDashboard = () => {
   }, []);
 
   return (
-    <div className="flex h-screen bg-white text-zinc-600">
+    <div className="flex h-[200vh] bg-white text-zinc-600">
       {/* Sidebar */}
       <div className={`relative min-h-full ${isOpen ? 'w-80' : 'w-20'} bg-yellow-200 transition-width duration-300`}>
         <div className="absolute top-0 right-0 p-4">
