@@ -27,7 +27,7 @@ const AddClubDetails = () => {
     e.preventDefault();
 
     try {
-      await axios.post('http://localhost:3000/clubs', formData); // Update endpoint as necessary
+      await axios.post('http://localhost:3000/clubdetails', formData); // Update endpoint as necessary
       navigate('/cdashboard'); // Redirect to /cdashboard after successful submission
     } catch (error) {
       console.error('Error submitting form', error);
