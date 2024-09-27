@@ -23,7 +23,10 @@ const CDashboard = () => {
             <span className="text-xl mr-4">🎭</span>
             {isOpen && <span>Add Event</span>}
           </Link>
-          {/* Add other links here as needed */}
+          <Link to="/add-club-details" className="hover:text-gray-900 flex items-center">
+            <span className="text-lg mr-2">📝</span>
+            {isOpen && <span>Add Club Details</span>}
+          </Link>
         </div>
       </div>
 
