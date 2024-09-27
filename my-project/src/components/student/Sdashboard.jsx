@@ -25,7 +25,7 @@ const Sdashboard = () => {
 
     const fetchNotices = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/notices'); // Assuming you have an endpoint for notices
+        const response = await axios.get('http://localhost:3000/notice'); // Assuming you have an endpoint for notices
         setNotices(response.data);
       } catch (error) {
         console.error('Error fetching notices:', error);
@@ -65,7 +65,7 @@ const Sdashboard = () => {
             <span className="text-xl mr-4">📝</span>
             {isOpen && <span>Notices</span>}
           </div>
-          <Link to="/tregister" className="hover:text-gray-900 flex items-center font-bold">
+          <Link to="/ttimetable" className="hover:text-gray-900 flex items-center font-bold">
             <span className="text-xl mr-4">🗓️</span>
             {isOpen && <span>Timetable</span>}
           </Link>

@@ -321,7 +321,6 @@ async function main() {
       }
     });
 
-
     app.post("/clubdetails", async (req, res) => {
       const {
         clubID,
@@ -374,18 +373,10 @@ async function main() {
 
     // Event creation route
     app.post("/notice", async (req, res) => {
-      const {
-        subject,
-        noticeDescription,
-        noticeDate,
-      } = req.body;
+      const { subject, noticeDescription, noticeDate } = req.body;
 
       // Ensure all fields are provided
-      if (
-        !subject ||
-        !noticeDescription ||
-        !noticeDate
-      ) {
+      if (!subject || !noticeDescription || !noticeDate) {
         return res.status(400).json({ error: "All fields are required" });
       }
 
@@ -393,8 +384,8 @@ async function main() {
         // Insert new event into the "events" collection
         const result = await noticeCollection.insertOne({
           subject,
-        noticeDescription,
-        noticeDate,
+          noticeDescription,
+          noticeDate,
           createdAt: new Date(), // Optional: track when the event was created
         });
 
@@ -408,7 +399,6 @@ async function main() {
       }
     });
 
-
     app.get("/events", async (req, res) => {
       try {
         const events = await eventsCollection.find({}).toArray();
@@ -418,13 +408,12 @@ async function main() {
         res.status(500).json({ error: "Internal Server Error" });
       }
     });
-
     app.get("/notice", async (req, res) => {
       try {
-        const events = await noticeCollection.find({}).toArray();
-        res.status(200).json(notice);
+        const notices = await noticeCollection.find({}).toArray(); // Corrected to notices
+        res.status(200).json(notices); // Sending the correct variable
       } catch (error) {
-        console.error("Error fetching notice:", error);
+        console.error("Error fetching notices:", error);
         res.status(500).json({ error: "Internal Server Error" });
       }
     });
