@@ -22,7 +22,7 @@ const AddEventForm = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:5000/api/events', formData);
+      const response = await axios.post('http://localhost:3000/events', formData);
       alert(response.data.message);
     } catch (error) {
       console.error('Error submitting form', error);

@@ -19,7 +19,7 @@ const CDashboard = () => {
         </div>
         <div className="flex flex-col items-start p-6 space-y-4 mt-16">
           {/* Link to the Add Event form route */}
-          <Link to="/add-event" className="hover:text-gray-300 flex items-center">
+          <Link to="/add-event" className="hover:text-gray-900 flex items-center">
             <span className="text-lg mr-2">🎭</span>
             {isOpen && <span>Add Event</span>}
           </Link>
