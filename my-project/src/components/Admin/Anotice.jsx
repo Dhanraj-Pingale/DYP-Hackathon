@@ -22,8 +22,8 @@ const Addnotice = () => {
     e.preventDefault();
 
     try {
-      await axios.post('http://localhost:3000/events', formData);
-      navigate('/cdashboard'); // Redirect to /cdashboard after successful submission
+      await axios.post('http://localhost:3000/notice', formData);
+      navigate('/adashboard');
     } catch (error) {
       console.error('Error submitting form', error);
       alert('Error submitting event');

@@ -43,6 +43,7 @@ async function main() {
 
     const usersCollection = client.db("Test").collection("users");
     const adminCollection = client.db("CollegeAdmin").collection("admins");
+    const noticeCollection = client.db("CollegeAdmin").collection("notices");
     const teacherCollection = client.db("teacher").collection("teachers");
     const clubCollection = client.db("club").collection("clubs");
     const studentCollection = client.db("student").collection("students");
@@ -319,6 +320,94 @@ async function main() {
         res.status(500).json({ error: "Internal Server Error" });
       }
     });
+
+
+    app.post("/clubdetails", async (req, res) => {
+      const {
+        clubID,
+        clubName,
+        clubDescription,
+        foundingDate,
+        facultyAdvisor,
+        contactEmail,
+        contactPhoneNo,
+        clubMembersNo,
+      } = req.body;
+
+      // Ensure all fields are provided
+      if (
+        !clubID ||
+        !clubName ||
+        !clubDescription ||
+        !foundingDate ||
+        !facultyAdvisor ||
+        !contactEmail ||
+        !contactPhoneNo ||
+        !clubMembersNo
+      ) {
+        return res.status(400).json({ error: "All fields are required" });
+      }
+
+      try {
+        // Insert new event into the "events" collection
+        const result = await clubDetailsCollection.insertOne({
+          clubID,
+          clubName,
+          clubDescription,
+          foundingDate,
+          facultyAdvisor,
+          contactEmail,
+          contactPhoneNo,
+          clubMembersNo,
+          createdAt: new Date(), // Optional: track when the event was created
+        });
+
+        res.status(201).json({
+          message: "Details created successfully",
+          eventId: result.insertedId,
+        });
+      } catch (error) {
+        console.error("Error adding details:", error);
+        res.status(500).json({ error: "Internal Server Error" });
+      }
+    });
+
+    // Event creation route
+    app.post("/notice", async (req, res) => {
+      const {
+        subject,
+        noticeDescription,
+        noticeDate,
+      } = req.body;
+
+      // Ensure all fields are provided
+      if (
+        !subject ||
+        !noticeDescription ||
+        !noticeDate
+      ) {
+        return res.status(400).json({ error: "All fields are required" });
+      }
+
+      try {
+        // Insert new event into the "events" collection
+        const result = await noticeCollection.insertOne({
+          subject,
+        noticeDescription,
+        noticeDate,
+          createdAt: new Date(), // Optional: track when the event was created
+        });
+
+        res.status(201).json({
+          message: "Notice created successfully",
+          eventId: result.insertedId,
+        });
+      } catch (error) {
+        console.error("Error creating notice:", error);
+        res.status(500).json({ error: "Internal Server Error" });
+      }
+    });
+
 
     app.get("/events", async (req, res) => {
       try {
