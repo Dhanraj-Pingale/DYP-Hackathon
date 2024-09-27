@@ -69,6 +69,10 @@ const Sdashboard = () => {
             <span className="text-xl mr-4">🗓️</span>
             {isOpen && <span>Timetable</span>}
           </Link>
+          <Link to="/sattendance" className="hover:text-gray-900 flex items-center font-bold">
+            <span className="text-xl mr-4">✅</span>
+            {isOpen && <span>Attendance</span>}
+          </Link>
           <div onClick={handleEventsClick} className="hover:text-gray-900 flex items-center cursor-pointer font-bold">
             <span className="text-xl mr-4">🎭</span>
             {isOpen && <span>Events</span>}

@@ -23,6 +23,7 @@ import AddClubDetails from "./components/club/AddClubDetails";
 import TeacherAttendance from "./components/teacher/Tattendance";
 import Timetable from "./components/Admin/Timetable";
 import TTimetable from "./components/teacher/Ttimetable";
+import StudentAttendance from "./components/student/SAttendence";
 
 
 const App = () => {
@@ -38,10 +39,6 @@ const App = () => {
           <Route path="/clogin" element={<CLogin></CLogin>} />
           <Route path="/adashboard" element={<Adashboard />} />
           <Route path="/sdashboard" element={<Sdashboard />} />
-
-
-          
-
           <Route path="/tdashboard" element={<Tdashboard />} />
           <Route path="/cdashboard" element={<CDashboard />} />
           <Route path="/slogin" element={<SLogin></SLogin>} />
@@ -54,6 +51,7 @@ const App = () => {
           <Route path="/tattendance" element={<TeacherAttendance></TeacherAttendance>}></Route>
           <Route path="/timetable" element={<Timetable></Timetable>}></Route>
           <Route path="/ttimetable" element={<TTimetable></TTimetable>}></Route>
+          <Route path="/sattendance" element={<StudentAttendance></StudentAttendance>}></Route>
 
 
 

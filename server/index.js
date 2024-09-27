@@ -49,6 +49,9 @@ async function main() {
     const studentCollection = client.db("student").collection("students");
     const eventsCollection = client.db("club").collection("events");
     const clubDetailsCollection = client.db("club").collection("details");
+    const attendanceCollection = client.db("student").collection("attendance");
+
+
     const timetableCollection = client
       .db("TimetableDB")
       .collection("timetable");
@@ -788,6 +791,55 @@ async function main() {
           .json({ error: "An error occurred while cancelling the class." });
       }
     });
+
+    app.post('/attendance', async (req, res) => {
+          const {
+              name,
+              code,
+              time,
+              location,
+          } = req.body;
+      
+          // Ensure all fields are provided
+          if (!name || !code || !time || !location) {
+              return res.status(400).json({ error: 'All fields are required' });
+          }
+      
+          const createdAt = new Date().toISOString();
+          const updatedAt = createdAt;
+      
+          try {
+              const result = await attendanceCollection.insertOne({
+                  name,
+                  code,
+                  time,
+                  location,
+                  createdAt,
+                  updatedAt,
+              });
+              res.status(201).json({
+                  message: 'Attendance entry created successfully',
+                  attendanceId: result.insertedId,
+              });
+          } catch (error) {
+              console.error('Error creating attendance:', error);
+              res.status(500).json({ error: 'Internal Server Error' });
+          }
+      });
+      app.get('/api/gattendance', async (req, res) => {
+        try {
+            // Fetch attendance records from the database
+            const attendanceRecords = await attendanceCollection.find().toArray();
+            
+            // Send the attendance records back as a JSON response
+            res.status(200).json(attendanceRecords);
+        } catch (error) {
+            console.error('Error fetching attendance data:', error);
+            res.status(500).json({ error: 'Internal Server Error' });
+        }
+    });
+    
+
 
     // Logout route
     app.post("/logout", (req, res) => {
