@@ -36,7 +36,7 @@ const TeacherAttendance = () => {
     };
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-blue-100 to-blue-300 p-4">
+        <div className="flex flex-col items-center justify-center min-h-screen bg-purple-300 p-4">
             <h1 className="text-4xl font-bold mb-6 text-gray-800">Teacher Attendance Page</h1>
             
             <div className="flex flex-col items-center mb-6 bg-white p-8 rounded-lg shadow-lg">
