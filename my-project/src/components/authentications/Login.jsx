@@ -36,10 +36,10 @@ const Login = () => {
 
       {/* Centered Content Div */}
       <div className="relative z-10 flex items-center justify-center h-full w-[80%] shadow-black">
-        <div className="bg-zinc-50 p-8 rounded-3xl text-center flex items-center w-[70%] h-[60%] shadow-sm"> {/* Adjust size if needed */}
+        <div className="bg-zinc-50 p-8 rounded-3xl   text-center flex items-center w-[70%] h-[60%] shadow-sm"> {/* Adjust size if needed */}
           {/* Left Section with Logo */}
-          <div className="flex flex-col items-center w-[50%] h-full">
-            <img src={logo} alt="Logo" className="w-44 m-10" /> {/* Adjust logo size */}
+          <div className="flex flex-col items-center w-[50%] h-full justify-center ">
+            <img src={logo} alt="Logo" className="w-44 m-10 pb-4 pt-20" /> {/* Adjust logo size */}
             <h1 className="text-red-700 text-2xl font-bold text-center">
               Dr. D. Y. Patil Unitech Society's <br />
               Dr. D. Y. Patil Institute of Technology
