@@ -11,6 +11,7 @@ import TLogin from "./components/teacher/TLogin";
 import CLogin from "./components/club/CLogin";
 import Adashboard from "./components/Admin/Adashboard";
 import SLogin from "./components/student/SLogin";
+import Cregistration from "./components/Admin/Cregistration";
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
           <Route path="/clogin" element={<CLogin></CLogin>} />
           <Route path="/adashboard" element={<Adashboard/>} />
           <Route path="/slogin" element={<SLogin></SLogin>} />
+          <Route path="/cregister" element={<Cregistration></Cregistration>} />
           {/* Protected Route */}
           <Route
             path="/"

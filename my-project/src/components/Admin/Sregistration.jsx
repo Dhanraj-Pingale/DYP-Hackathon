@@ -14,7 +14,7 @@ const Register = () => {
     e.preventDefault();
 
     axios
-      .post("http://localhost:3000/registerdb", { name, email, password })
+      .post("http://localhost:3000/studentregisterdb", { name, email, password })
       .then((result) => {
         console.log(result);
         navigate("/login");
