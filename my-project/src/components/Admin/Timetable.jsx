@@ -76,8 +76,11 @@ const Timetable = () => {
     if (error) return <div className="text-red-500 text-center text-lg">{error}</div>;
 
     return (
-        <div className="container mx-auto p-8">
-            <h2 className="text-3xl font-bold text-gray-700 mb-8 text-center">Add Timetable Entry</h2>
+        <div className='flex justify-center items-center bg-blue-200 h-auto w-screen'>
+
+    
+        <div className="container mx-auto p-8 bg-blue-200">
+            <h2 className="text-3xl font-bold text-gray-700 mb-8 text-center bg-blue-200">Add Timetable Entry</h2>
             <form className="bg-gray-100 p-8 rounded-xl shadow-lg mb-12 max-w-3xl mx-auto" onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {['class', 'division', 'batch', 'subject', 'teacherId', 'teacherName', 'roomNumber', 'day'].map((field) => (
@@ -136,6 +139,7 @@ const Timetable = () => {
                     </tbody>
                 </table>
             </div>
+        </div>
         </div>
     );
 };
