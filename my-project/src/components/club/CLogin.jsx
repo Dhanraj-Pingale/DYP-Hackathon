@@ -29,7 +29,7 @@ const CLogin = () => {
 
       if (response.status === 200) {
         login(); // Set user as authenticated in AuthContext
-        navigate("/"); // Redirect to homepage
+        navigate("/cdashboard"); // Redirect to homepage
       } else {
         setError("Invalid credentials");
       }
@@ -41,7 +41,7 @@ const CLogin = () => {
     }
   };
 
-  
+
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100 absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${image2})` }}>
@@ -87,8 +87,6 @@ const CLogin = () => {
         {message && (
           <p className="mt-4 text-green-600 text-center">{message}</p>
         )}
-
-        
       </div>
     </div>
   );

@@ -15,6 +15,9 @@ import Cregistration from "./components/Admin/Cregistration";
 import Tregistration from "./components/Admin/Tregistration";
 import Sregistration from "./components/Admin/Sregistration";
 import Tdashboard from "./components/teacher/tdashboard";
+import CDashboard from "./components/club/CDashboard";
+import AddEventForm from "./components/club/AddEventForm";
+
 
 const App = () => {
   return (
@@ -29,10 +32,12 @@ const App = () => {
           <Route path="/clogin" element={<CLogin></CLogin>} />
           <Route path="/adashboard" element={<Adashboard />} />
           <Route path="/tdashboard" element={<Tdashboard />} />
+          <Route path="/cdashboard" element={<CDashboard />} />
           <Route path="/slogin" element={<SLogin></SLogin>} />
           <Route path="/cregister" element={<Cregistration></Cregistration>} />
           <Route path="/tregister" element={<Tregistration></Tregistration>} />
           <Route path="/sregister" element={<Sregistration></Sregistration>} />
+          <Route path="/add-event" element={<AddEventForm />} />
           {/* Protected Route */}
           <Route
             path="/"
