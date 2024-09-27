@@ -22,6 +22,8 @@ import Anotice from "./components/Admin/Anotice"
 import AddClubDetails from "./components/club/AddClubDetails";
 import TeacherAttendance from "./components/teacher/Tattendance";
 import Timetable from "./components/Admin/Timetable";
+import TTimetable from "./components/teacher/Ttimetable";
+
 
 const App = () => {
   return (
@@ -51,6 +53,9 @@ const App = () => {
           <Route path="/add-club-details" element={<AddClubDetails />} />
           <Route path="/tattendance" element={<TeacherAttendance></TeacherAttendance>}></Route>
           <Route path="/timetable" element={<Timetable></Timetable>}></Route>
+          <Route path="/ttimetable" element={<TTimetable></TTimetable>}></Route>
+
+
 
 
           {/* Protected Route */}
