@@ -9,6 +9,7 @@ import About from "./components/homepages/About";
 import ALogin from "./components/Admin/ALogin";
 import TLogin from "./components/teacher/TLogin";
 import CLogin from "./components/club/CLogin";
+import SLogin from "./components/student/SLogin";
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
           <Route path="/alogin" element={<ALogin></ALogin>} />
           <Route path="/tlogin" element={<TLogin></TLogin>} />
           <Route path="/clogin" element={<CLogin></CLogin>} />
+          <Route path="/slogin" element={<SLogin></SLogin>} />
           {/* Protected Route */}
           <Route
             path="/"
