@@ -44,6 +44,7 @@ async function main() {
     const usersCollection = client.db("Test").collection("users");
     const adminCollection = client.db("CollegeAdmin").collection("admins");
     const teacherCollection = client.db("teacher").collection("teachers");
+    const clubCollection = client.db("club").collection("clubs");
 
     // Passport Local Strategy for User
     passport.use(
@@ -129,6 +130,34 @@ async function main() {
       })
     );
 
+    // Passport Local Strategy for Club
+    passport.use(
+      "club-local",
+      new LocalStrategy({ usernameField: "clubID" }, async (clubID, password, done) => {
+        try {
+          const club = await clubCollection.findOne({ clubID });
+          if (!club) {
+            console.log("Club not found");
+            return done(null, false, { message: "Incorrect club ID." });
+          }
+
+          // Compare the password using bcrypt
+          const isValidClubPassword = await bcrypt.compare(password, club.password);
+
+          if (!isValidClubPassword) {
+            console.log("Club password does not match");
+            return done(null, false, { message: "Incorrect password." });
+          }
+
+          console.log("Club login successful");
+          return done(null, club);
+        } catch (error) {
+          console.error("Error during club login:", error);
+          return done(error);
+        }
+      })
+    );
+
     // Serialize and deserialize user for session support
     passport.serializeUser((user, done) => {
       done(null, user._id);
@@ -143,7 +172,10 @@ async function main() {
         if (admin) return done(null, admin);
 
         const teacher = await teacherCollection.findOne({ _id: new ObjectId(id) });
-        done(null, teacher);
+        if (teacher) return done(null, teacher);
+
+        const club = await clubCollection.findOne({ _id: new ObjectId(id) });
+        done(null, club);
       } catch (error) {
         done(error);
       }
@@ -233,6 +265,24 @@ async function main() {
             message: "Teacher logged in successfully",
             teacher: {
               teacherID: req.user.teacherID,
+            },
+          });
+        });
+      })(req, res, next);
+    });
+
+    // Club login route
+    app.post("/clublogindb", (req, res, next) => {
+      passport.authenticate("club-local", (err, club, info) => {
+        if (err) return next(err);
+        if (!club) return res.status(400).json({ error: info.message });
+
+        req.login(club, (loginErr) => {
+          if (loginErr) return next(loginErr);
+          res.json({
+            message: "Club logged in successfully",
+            club: {
+              clubID: req.user.clubID,
             },
           });
         });
