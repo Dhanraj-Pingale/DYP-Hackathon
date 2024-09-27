@@ -57,17 +57,19 @@ const Sdashboard = () => {
 
       {/* Main Content */}
       <div className="flex-1 p-10">
-        <h1 className="text-3xl font-bold">Student Dashboard</h1>
+        <h1 className="text-3xl font-bold mb-8">Student Dashboard</h1>
         {showEvents && (
-          <div className="grid grid-cols-3 gap-4">
+          <div className="flex  gap-4">
             {events.map((event) => (
-              <div key={event._id} className="bg-gray-800 text-white p-4 rounded shadow-lg">
-                <h2 className="text-lg">{event.clubName}</h2>
-                <p>{event.eventName}</p>
-                <p>{event.eventDescription}</p>
-                <p>{event.eventDate}</p>
-                <p>{event.eventTime}</p>
-                <p>{event.eventVenue}</p>
+              <div key={event._id} className="flex flex-col items-center  bg-gray-300 w-[300px] h-auto text-gray-900 p-8 rounded-xl shadow-lg">
+                <h2 className="text-2xl font-bold mb-8 text-orange-600">{event.clubName}</h2>
+                <div className='w-full h-full flex flex-col items-start gap-2 text-lg'>
+                  <p> <span className='font-bold'>Name : </span> {event.eventName}</p>
+                  <p><span className='font-bold'>Discription : </span>{event.eventDescription}</p>
+                  <p><span className='font-bold'>Date : </span>{event.eventDate}</p>
+                  <p><span className='font-bold'>Time : </span>{event.eventTime}</p>
+                  <p><span className='font-bold'>Venue : </span>{event.eventVenue}</p>
+                </div>
               </div>
             ))}
           </div>
