@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const Adashboard = () => {
+const Tdashboard = () => {
   const [isOpen, setIsOpen] = useState(true);
 
   const toggleSidebar = () => {
@@ -18,32 +18,32 @@ const Adashboard = () => {
           </button>
         </div>
         <div className="flex flex-col text-xl items-start p-9 space-y-8 mt-20">
-          <Link to="/sregister" className="hover:text-gray-900 flex items-center">
-            <span className="text-xl mr-4 ">👤</span>
-            {isOpen && <span>Register Student</span>}
+          <Link to="/attendance" className="hover:text-gray-900 flex items-center">
+            <span className="text-xl mr-4">📋</span>
+            {isOpen && <span>Take Attendance</span>}
           </Link>
-          <Link to="/tregister" className="hover:text-gray-900 flex items-center">
-            <span className="text-xl mr-4">👨‍🏫</span>
-            {isOpen && <span>Register Teacher</span>}
+          <Link to="/timetable" className="hover:text-gray-900 flex items-center">
+            <span className="text-xl mr-4">⏰</span>
+            {isOpen && <span>Show Timetable</span>}
           </Link>
-          <Link to="/cregister" className="hover:text-gray-900 flex items-center">
-            <span className="text-xl mr-4">🏢</span>
-            {isOpen && <span>Register Club</span>}
+          <Link to="/extra-class" className="hover:text-gray-900 flex items-center">
+            <span className="text-xl mr-4">➕</span>
+            {isOpen && <span>Extra Class</span>}
           </Link>
-          <Link to="/cregister" className="hover:text-gray-900 flex items-center">
-            <span className="text-xl mr-4">📜</span>
-            {isOpen && <span>Display Notice</span>}
+          <Link to="/cancel-class" className="hover:text-gray-900 flex items-center">
+            <span className="text-xl mr-4">🚫</span>
+            {isOpen && <span>Cancel Class</span>}
           </Link>
         </div>
       </div>
 
       {/* Main Content */}
       <div className="flex-1 p-10">
-        <h1 className="text-3xl font-bold">Admin Dashboard</h1>
+        <h1 className="text-3xl font-bold">Teacher Dashboard</h1>
         {/* Add more content here */}
       </div>
     </div>
   );
 };
 
-export default Adashboard;
+export default Tdashboard;
