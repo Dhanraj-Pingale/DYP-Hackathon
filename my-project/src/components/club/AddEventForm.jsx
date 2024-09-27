@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 const AddEventForm = () => {
   const [formData, setFormData] = useState({
@@ -10,6 +11,8 @@ const AddEventForm = () => {
     eventTime: '',
     eventVenue: '',
   });
+
+  const navigate = useNavigate(); // Initialize useNavigate
 
   const handleChange = (e) => {
     setFormData({
@@ -22,8 +25,8 @@ const AddEventForm = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:3000/events', formData);
-      alert(response.data.message);
+      await axios.post('http://localhost:3000/events', formData);
+      navigate('/cdashboard'); // Redirect to /cdashboard after successful submission
     } catch (error) {
       console.error('Error submitting form', error);
       alert('Error submitting event');
