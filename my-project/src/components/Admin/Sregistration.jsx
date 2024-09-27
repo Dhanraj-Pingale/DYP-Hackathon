@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const Register = () => {
+const Sregistration = () => {
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [studentID, setStudentID] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
@@ -14,10 +14,14 @@ const Register = () => {
     e.preventDefault();
 
     axios
+<<<<<<< HEAD
       .post("http://localhost:3000/studentregisterdb", { name, email, password })
+=======
+      .post("http://localhost:3000/registerdb", { name, studentID, password })
+>>>>>>> 84e7b075630c9567108b16dfda78cc8af47655fd
       .then((result) => {
         console.log(result);
-        navigate("/login");
+        navigate("/adashboard");
       })
       .catch((err) => {
         console.log(err);
@@ -25,9 +29,7 @@ const Register = () => {
       });
   };
 
-  const handleLoginRedirect = () => {
-    navigate("/login");
-  };
+ 
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
@@ -41,7 +43,7 @@ const Register = () => {
             <input
               type="text"
               name="name"
-              placeholder="First name"
+              placeholder="Name of Student"
               className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-300"
               autoComplete="off"
               required
@@ -50,20 +52,20 @@ const Register = () => {
           </div>
           <div className="mb-4">
             <input
-              type="email"
-              name="email"
-              placeholder="Email"
+              type="number"
+              name="studentID"
+              placeholder="Create ID"
               className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-300"
               autoComplete="off"
               required
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => setStudentID(e.target.value)}
             />
           </div>
           <div className="mb-4">
             <input
               type="password"
               name="password"
-              placeholder="Password"
+              placeholder="Set Password"
               className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-300"
               autoComplete="off"
               required
@@ -74,23 +76,14 @@ const Register = () => {
             type="submit"
             className="w-full p-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-200"
           >
-            Register
+            Add Student
           </button>
         </form>
 
-        {/* Option to go to login page */}
-        <div className="mt-4 text-center">
-          <p className="text-gray-600">Already registered?</p>
-          <button
-            onClick={handleLoginRedirect}
-            className="text-blue-600 hover:underline"
-          >
-            Go to Login
-          </button>
-        </div>
+        
       </div>
     </div>
   );
 };
 
-export default Register;
+export default Sregistration;
