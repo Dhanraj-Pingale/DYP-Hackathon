@@ -47,6 +47,7 @@ async function main() {
     const clubCollection = client.db("club").collection("clubs");
     const studentCollection = client.db("student").collection("students");
     const eventsCollection = client.db("club").collection("events");
+    const clubDetailsCollection = client.db("club").collection("details");
 
     // Passport Local Strategy for Student
     passport.use(
@@ -218,7 +219,55 @@ async function main() {
       )
     );
 
-    
+    app.post("/clubdetails", async (req, res) => {
+      const {
+        clubID,
+        clubName,
+        clubDescription,
+        foundingDate,
+        facultyAdvisor,
+        contactEmail,
+        contactPhoneNo,
+        clubMembersNo,
+      } = req.body;
+
+      // Ensure all fields are provided
+      if (
+        !clubID ||
+        !clubName ||
+        !clubDescription ||
+        !foundingDate ||
+        !facultyAdvisor ||
+        !contactEmail ||
+        !contactPhoneNo ||
+        !clubMembersNo
+      ) {
+        return res.status(400).json({ error: "All fields are required" });
+      }
+
+      try {
+        // Insert new event into the "events" collection
+        const result = await clubDetailsCollection.insertOne({
+          clubID,
+          clubName,
+          clubDescription,
+          foundingDate,
+          facultyAdvisor,
+          contactEmail,
+          contactPhoneNo,
+          clubMembersNo,
+          createdAt: new Date(), // Optional: track when the event was created
+        });
+
+        res.status(201).json({
+          message: "Details created successfully",
+          eventId: result.insertedId,
+        });
+      } catch (error) {
+        console.error("Error adding details:", error);
+        res.status(500).json({ error: "Internal Server Error" });
+      }
+    });
 
     // Event creation route
     app.post("/events", async (req, res) => {
@@ -270,7 +319,7 @@ async function main() {
 
     app.get("/events", async (req, res) => {
       try {
-        const events = await eventsCollection.find({}).toArray(); 
+        const events = await eventsCollection.find({}).toArray();
         res.status(200).json(events);
       } catch (error) {
         console.error("Error fetching events:", error);
