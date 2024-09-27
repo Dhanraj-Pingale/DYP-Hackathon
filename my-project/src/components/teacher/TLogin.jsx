@@ -20,7 +20,7 @@ const TLogin = () => {
 
     try {
       // API call to authenticate user
-      const response = await axios.post("http://localhost:3000/logindb", {
+      const response = await axios.post("http://localhost:3000/teacherlogindb", {
         teacherID,
         password,
       });
@@ -50,7 +50,7 @@ const TLogin = () => {
             <input
               type="number"
               value={teacherID}
-              onChange={(e) => setAdminID(e.target.value)}
+              onChange={(e) => setTeacherID(e.target.value)}
               placeholder="teacherID"
               required
               className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-300"

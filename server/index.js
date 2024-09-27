@@ -43,6 +43,7 @@ async function main() {
 
     const usersCollection = client.db("Test").collection("users");
     const adminCollection = client.db("CollegeAdmin").collection("admins");
+    const teacherCollection = client.db("teacher").collection("teachers");
 
     // Passport Local Strategy for User
     passport.use(
@@ -100,6 +101,34 @@ async function main() {
       })
     );
 
+    // Passport Local Strategy for Teacher
+    passport.use(
+      "teacher-local",
+      new LocalStrategy({ usernameField: "teacherID" }, async (teacherID, password, done) => {
+        try {
+          const teacher = await teacherCollection.findOne({ teacherID });
+          if (!teacher) {
+            console.log("Teacher not found");
+            return done(null, false, { message: "Incorrect teacher ID." });
+          }
+
+          // Compare the password using bcrypt
+          const isValidTeacherPassword = await bcrypt.compare(password, teacher.password);
+
+          if (!isValidTeacherPassword) {
+            console.log("Teacher password does not match");
+            return done(null, false, { message: "Incorrect password." });
+          }
+
+          console.log("Teacher login successful");
+          return done(null, teacher);
+        } catch (error) {
+          console.error("Error during teacher login:", error);
+          return done(error);
+        }
+      })
+    );
+
     // Serialize and deserialize user for session support
     passport.serializeUser((user, done) => {
       done(null, user._id);
@@ -108,7 +137,13 @@ async function main() {
     passport.deserializeUser(async (id, done) => {
       try {
         const user = await usersCollection.findOne({ _id: new ObjectId(id) });
-        done(null, user);
+        if (user) return done(null, user);
+
+        const admin = await adminCollection.findOne({ _id: new ObjectId(id) });
+        if (admin) return done(null, admin);
+
+        const teacher = await teacherCollection.findOne({ _id: new ObjectId(id) });
+        done(null, teacher);
       } catch (error) {
         done(error);
       }
@@ -180,6 +215,24 @@ async function main() {
             message: "Admin logged in successfully",
             admin: {
               adminID: req.user.adminID,
+            },
+          });
+        });
+      })(req, res, next);
+    });
+
+    // Teacher login route
+    app.post("/teacherlogindb", (req, res, next) => {
+      passport.authenticate("teacher-local", (err, teacher, info) => {
+        if (err) return next(err);
+        if (!teacher) return res.status(400).json({ error: info.message });
+        
+        req.login(teacher, (loginErr) => {
+          if (loginErr) return next(loginErr);
+          res.json({
+            message: "Teacher logged in successfully",
+            teacher: {
+              teacherID: req.user.teacherID,
             },
           });
         });
