@@ -18,6 +18,7 @@ import Tdashboard from "./components/teacher/tdashboard";
 import CDashboard from "./components/club/CDashboard";
 import AddEventForm from "./components/club/AddEventForm";
 import Sdashboard from "./components/student/Sdashboard";
+import AddClubDetails from "./components/club/AddClubDetails";
 
 
 const App = () => {
@@ -42,6 +43,7 @@ const App = () => {
           <Route path="/tregister" element={<Tregistration></Tregistration>} />
           <Route path="/sregister" element={<Sregistration></Sregistration>} />
           <Route path="/add-event" element={<AddEventForm />} />
+          <Route path="/add-club-details" element={<AddClubDetails />} />
           {/* Protected Route */}
           <Route
             path="/"
