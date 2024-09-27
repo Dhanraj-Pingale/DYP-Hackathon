@@ -36,22 +36,28 @@ const Login = () => {
 
       {/* Centered Content Div */}
       <div className="relative z-10 flex items-center justify-center h-full">
-        <div className="bg-zinc-50 p-8 rounded-lg text-center flex items-center w-[70%] h-[60%]"> {/* Adjust size if needed */}
+        <div className="bg-zinc-50 p-8 rounded-lg text-center flex items-center w-[70%] h-[60%] shadow-sm"> {/* Adjust size if needed */}
           {/* Left Section with Logo */}
           <div className="flex flex-col items-center w-[50%] h-full">
             <img src={logo} alt="Logo" className="w-44 m-10" /> {/* Adjust logo size */}
             <h1 className="text-red-700 text-2xl font-bold text-center">
               Dr. D. Y. Patil Unitech Society's <br />
               Dr. D. Y. Patil Institute of Technology
+              
+            </h1>
+            <h1 className="text-[#00ACD6] p-16 text-lg ">
+            Accredited by NAAC with a CGPA of 3.74 on a four point scale at 'A++' Grade
             </h1>
           </div> 
 
           {/* Button Group */}
-          <div className="flex flex-col items-center space-y-6 border-l-4 border-gray-300 p-4 justify-center w-[50%] h-full"> {/* Vertical spacing between buttons */}
-            <button onClick={handleAdmin} className="w-[70%] bg-[#00ACD6] text-white p-2 rounded">Admin</button>
-            <button onClick={handleTeacher} className="w-[70%] bg-[#00ACD6] text-white p-2 rounded">Teacher</button>
-            <button onClick={handleStudent} className="w-[70%] bg-[#00ACD6] text-white p-2 rounded">Student</button>
-            <button onClick={handleClub} className="w-[70%] bg-[#00ACD6] text-white p-2 rounded">Club</button>
+          <div className="flex flex-col items-center space-y-6 border-l-4 border-gray-300 p-4 justify-center w-[50%] h-full">
+            <h1 className=" font-bold text-3xl text-zinc-500">
+              Sign In</h1> {/* Vertical spacing between buttons */}
+            <button onClick={handleAdmin} className="w-[50%] bg-[#00ACD6] text-white p-2 rounded">Admin</button>
+            <button onClick={handleTeacher} className="w-[50%] bg-[#00ACD6] text-white p-2 rounded">Teacher</button>
+            <button onClick={handleStudent} className="w-[50%] bg-[#00ACD6] text-white p-2 rounded">Student</button>
+            <button onClick={handleClub} className="w-[50%] bg-[#00ACD6] text-white p-2 rounded">Club</button>
           </div>
         </div>
       </div>
