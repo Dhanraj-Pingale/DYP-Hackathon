@@ -84,7 +84,7 @@ async function main() {
           }
 
           // Compare the password using bcrypt
-          const isValidAdminPassword = await bcrypt.compare(password, admin.adminPassword);
+          const isValidAdminPassword = await bcrypt.compare(password, admin.password);
 
           if (!isValidAdminPassword) {
             console.log("Admin password does not match");
