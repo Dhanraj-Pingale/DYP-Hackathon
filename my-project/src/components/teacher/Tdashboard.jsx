@@ -18,7 +18,7 @@ const Tdashboard = () => {
           </button>
         </div>
         <div className="flex flex-col text-xl items-start p-9 space-y-8 mt-20">
-          <Link to="/attendance" className="hover:text-gray-900 flex items-center">
+          <Link to="/tattendance" className="hover:text-gray-900 flex items-center">
             <span className="text-xl mr-4">📋</span>
             {isOpen && <span>Take Attendance</span>}
           </Link>

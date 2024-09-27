@@ -34,6 +34,10 @@ const Adashboard = () => {
             <span className="text-xl mr-4">📜</span>
             {isOpen && <span>Display Notice</span>}
           </Link>
+          <Link to="/timetable" className="hover:text-gray-900 flex items-center">
+            <span className="text-xl mr-4">📅</span>
+            {isOpen && <span>Timetable</span>}
+          </Link>
         </div>
       </div>
 

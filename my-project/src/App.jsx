@@ -19,7 +19,8 @@ import CDashboard from "./components/club/CDashboard";
 import AddEventForm from "./components/club/AddEventForm";
 import Sdashboard from "./components/student/Sdashboard";
 import AddClubDetails from "./components/club/AddClubDetails";
-
+import TeacherAttendance from "./components/teacher/Tattendance";
+import Timetable from "./components/Admin/Timetable";
 
 const App = () => {
   return (
@@ -44,6 +45,10 @@ const App = () => {
           <Route path="/sregister" element={<Sregistration></Sregistration>} />
           <Route path="/add-event" element={<AddEventForm />} />
           <Route path="/add-club-details" element={<AddClubDetails />} />
+          <Route path="/tattendance" element={<TeacherAttendance></TeacherAttendance>}></Route>
+          <Route path="/timetable" element={<Timetable></Timetable>}></Route>
+
+
           {/* Protected Route */}
           <Route
             path="/"

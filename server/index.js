@@ -48,6 +48,9 @@ async function main() {
     const studentCollection = client.db("student").collection("students");
     const eventsCollection = client.db("club").collection("events");
     const clubDetailsCollection = client.db("club").collection("details");
+    const timetableCollection = client
+      .db("TimetableDB")
+      .collection("timetable");
 
     // Passport Local Strategy for Student
     passport.use(
@@ -581,6 +584,121 @@ async function main() {
           });
         });
       })(req, res, next);
+    });
+
+    app.post("/timetable", async (req, res) => {
+      const {
+        class: className,
+        division,
+        batch,
+        subject,
+        teacherId,
+        teacherName,
+        roomNumber,
+        day,
+        startTime,
+        endTime,
+        classCancelledByTeacher,
+        adminId,
+      } = req.body;
+
+      // Ensure all fields are provided
+      if (
+        !className ||
+        !division ||
+        !batch ||
+        !subject ||
+        !teacherId ||
+        !teacherName ||
+        !roomNumber ||
+        !day ||
+        !startTime ||
+        !endTime
+      ) {
+        return res.status(400).json({ error: "All fields are required" });
+      }
+
+      const createdAt = new Date().toISOString();
+      const updatedAt = createdAt;
+
+      try {
+        const result = await timetableCollection.insertOne({
+          class: className,
+          division,
+          batch,
+          subject,
+          teacherId,
+          teacherName,
+          roomNumber,
+          day,
+          startTime,
+          endTime,
+          classCancelledByTeacher,
+          adminId,
+          createdAt,
+          updatedAt,
+        });
+        res.status(201).json({
+          message: "Timetable entry created successfully",
+          timetableId: result.insertedId,
+        });
+      } catch (error) {
+        console.error("Error creating timetable:", error);
+        res.status(500).json({ error: "Internal Server Error" });
+      }
+    });
+
+    // GET endpoint to fetch all timetable entries
+    app.get("/timetable", async (req, res) => {
+      try {
+        const entries = await timetableCollection.find({}).toArray();
+        res.status(200).json(entries);
+      } catch (error) {
+        console.error("Error fetching timetable entries:", error);
+        res.status(500).json({ error: "Internal Server Error" });
+      }
+    });
+
+    // GET endpoint to fetch all teachers
+    app.get("/teachers", async (req, res) => {
+      try {
+        const teachers = await teacherCollection.find({}).toArray(); // Fetch all teachers from the database
+        res.status(200).json(teachers); // Return the teachers as JSON
+      } catch (error) {
+        console.error("Error fetching teachers:", error);
+        res.status(500).json({ error: "Internal Server Error" }); // Handle errors
+      }
+    });
+
+    async function cancelClassById(id) {
+      console.log("Cancelling class with ID:", id); // Log the ID
+      const result = await timetableCollection.updateOne(
+        { _id: new ObjectId(id) }, // Use ObjectId here
+        { $set: { classCancelledByTeacher: true } }
+      );
+      console.log("Cancellation result:", result); // Log the result
+      return result.modifiedCount > 0; // Return true if a document was modified
+    }
+
+    // PATCH endpoint to cancel a class
+    app.patch("/timetable/:id/cancel", async (req, res) => {
+      const timetableId = req.params.id;
+
+      try {
+        const result = await cancelClassById(timetableId);
+        if (result) {
+          return res
+            .status(200)
+            .json({ message: "Class cancelled successfully." });
+        } else {
+          return res.status(404).json({ error: "Class not found." });
+        }
+      } catch (error) {
+        console.error(error);
+        return res
+          .status(500)
+          .json({ error: "An error occurred while cancelling the class." });
+      }
     });
 
     // Logout route
