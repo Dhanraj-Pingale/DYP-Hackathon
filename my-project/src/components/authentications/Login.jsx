@@ -1,6 +1,6 @@
 import React from "react";
 import logo from "../../Assets/logo.png";
-import image from '../../Assets/DYP.jpg';
+import image from '../../Assets/institute-of-engineering-and-technology.jpg';
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
@@ -24,7 +24,7 @@ const Login = () => {
   }
   
   return (
-    <div className="relative h-screen w-screen">
+    <div className="relative h-screen w-screen flex items-center justify-center ">
       {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center"
@@ -32,11 +32,11 @@ const Login = () => {
       />
 
       {/* Overlay with less opacity */}
-      <div className="absolute inset-0 bg-black opacity-50" />
+      <div className="absolute inset-0 bg-black opacity-50 " />
 
       {/* Centered Content Div */}
-      <div className="relative z-10 flex items-center justify-center h-full">
-        <div className="bg-zinc-50 p-8 rounded-lg text-center flex items-center w-[70%] h-[60%] shadow-sm"> {/* Adjust size if needed */}
+      <div className="relative z-10 flex items-center justify-center h-full w-[80%] shadow-black">
+        <div className="bg-zinc-50 p-8 rounded-3xl text-center flex items-center w-[70%] h-[60%] shadow-sm"> {/* Adjust size if needed */}
           {/* Left Section with Logo */}
           <div className="flex flex-col items-center w-[50%] h-full">
             <img src={logo} alt="Logo" className="w-44 m-10" /> {/* Adjust logo size */}

@@ -34,7 +34,7 @@ const AddEventForm = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-amber-950-400-600 to-black p-6">
+    <div className="flex items-center justify-center min-h-screen bg-white p-6" >
       <div className="bg-white shadow-2xl rounded-lg p-10 w-full max-w-lg">
         <h1 className="text-3xl font-bold text-center mb-8 text-gray-800">
           Add New Event
@@ -48,32 +48,32 @@ const AddEventForm = () => {
               name="clubID"
               value={formData.clubID}
               onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300"
+              className="w-full px-4 py-2 border bg-white border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300"
               placeholder="Enter Club ID"
             />
           </div>
 
           {/* Event Name */}
           <div className="mb-6">
-            <label className="block text-gray-700 font-semibold mb-2">Event Name</label>
+            <label className="block bg-white text-gray-700 font-semibold mb-2">Event Name</label>
             <input
               type="text"
               name="eventName"
               value={formData.eventName}
               onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300"
+              className="w-full px-4 py-2 border bg-white border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300"
               placeholder="Enter Event Name"
             />
           </div>
 
           {/* Event Description */}
           <div className="mb-6">
-            <label className="block text-gray-700 font-semibold mb-2">Event Description</label>
+            <label className="block text-gray-700  bg-white font-semibold mb-2">Event Description</label>
             <textarea
               name="eventDescription"
               value={formData.eventDescription}
               onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300"
+              className="w-full px-4 py-2 border  bg-white  border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300"
               rows="4"
               placeholder="Describe the event"
             ></textarea>
@@ -81,37 +81,37 @@ const AddEventForm = () => {
 
           {/* Event Date */}
           <div className="mb-6">
-            <label className="block text-gray-700 font-semibold mb-2">Event Date</label>
+            <label className="block text-gray-700 font-semibold mb-2 bg-white">Event Date</label>
             <input
               type="date"
               name="eventDate"
               value={formData.eventDate}
               onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300"
+              className="w-full px-4 py-2 border bg-white  border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300"
             />
           </div>
 
           {/* Event Time */}
           <div className="mb-6">
-            <label className="block text-gray-700 font-semibold mb-2">Event Time</label>
+            <label className="block text-gray-700 font-semibold mb-2 bg-white ">Event Time</label>
             <input
               type="time"
               name="eventTime"
               value={formData.eventTime}
               onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300"
+              className="w-full px-4 py-2 border bg-white text-gray-800 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300"
             />
           </div>
 
           {/* Event Venue */}
-          <div className="mb-6">
-            <label className="block text-gray-700 font-semibold mb-2">Event Venue</label>
+          <div className="mb-6 ">
+            <label className="block text-gray-700 font-semibold mb-2 bg-white ">Event Venue</label>
             <input
               type="text"
               name="eventVenue"
               value={formData.eventVenue}
               onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300"
+              className="w-full px-4 py-2 border bg-white border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300"
               placeholder="Enter Venue"
             />
           </div>

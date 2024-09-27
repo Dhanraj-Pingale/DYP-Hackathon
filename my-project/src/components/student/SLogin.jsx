@@ -28,7 +28,7 @@ const SLogin = () => {
 
       if (response.status === 200) {
         login(); // Set user as authenticated in AuthContext
-        navigate("/"); // Redirect to homepage
+        navigate("/sdashboard"); // Redirect to homepage
       } else {
         setError("Invalid credentials");
       }
