@@ -163,3 +163,7 @@ app.listen(3000, async () => {
   console.log("Server is running on port 3000");
   await main(); // Call the main function to connect to MongoDB
 });
+
+
+// MONGO_URI="mongodb+srv://ayushmahandule:United14@united14.0pudt.mongodb.net/?retryWrites=true&w=majority&appName=United14"
+// SESSION_SECRET="DEMIGOD"
