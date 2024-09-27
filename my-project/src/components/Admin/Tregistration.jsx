@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const Tregistration = () => {
-  const [name, setName] = useState("");
+  const [teacherName, setName] = useState("");
   const [teacherID, setTeacherID] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -14,7 +14,7 @@ const Tregistration = () => {
     e.preventDefault();
 
     axios
-      .post("http://localhost:3000/registerdb", { name, email, password })
+      .post("http://localhost:3000/teacherregisterdb", { teacherName, teacherID, password })
       .then((result) => {
         console.log(result);
         navigate("/adashboard");

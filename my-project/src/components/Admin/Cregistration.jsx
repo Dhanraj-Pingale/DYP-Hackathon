@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const Cregister = () => {
-  const [name, setName] = useState("");
+const Cregistration = () => {
+  const [clubName, setName] = useState("");
   const [clubID, setClubID] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -14,7 +14,7 @@ const Cregister = () => {
     e.preventDefault();
 
     axios
-      .post("http://localhost:3000/registerdb", { name, email, password })
+      .post("http://localhost:3000/clubregisterdb", { clubName, clubID, password })
       .then((result) => {
         console.log(result);
         navigate("/adashboard");
@@ -82,4 +82,4 @@ const Cregister = () => {
   );
 };
 
-export default Cregister;
+export default Cregistration;

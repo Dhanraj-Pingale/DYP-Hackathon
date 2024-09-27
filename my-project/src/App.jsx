@@ -11,33 +11,32 @@ import TLogin from "./components/teacher/TLogin";
 import CLogin from "./components/club/CLogin";
 import Adashboard from "./components/Admin/Adashboard";
 import SLogin from "./components/student/SLogin";
+import Cregistration from "./components/Admin/Cregistration";
+import Tregistration from "./components/Admin/Tregistration";
+import Sregistration from "./components/Admin/Sregistration";
 
 const App = () => {
   return (
     <AuthProvider>
       <BrowserRouter>
         <Routes>
+          <Route path="/about" element={<About></About>} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/alogin" element={<ALogin></ALogin>} />
           <Route path="/tlogin" element={<TLogin></TLogin>} />
           <Route path="/clogin" element={<CLogin></CLogin>} />
-          <Route path="/adashboard" element={<Adashboard/>} />
+          <Route path="/adashboard" element={<Adashboard />} />
           <Route path="/slogin" element={<SLogin></SLogin>} />
+          <Route path="/cregister" element={<Cregistration></Cregistration>} />
+          <Route path="/tregister" element={<Tregistration></Tregistration>} />
+          <Route path="/sregister" element={<Sregistration></Sregistration>} />
           {/* Protected Route */}
           <Route
             path="/"
             element={
               <ProtectedRoute>
                 <Homepage />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/about"
-            element={
-              <ProtectedRoute>
-                <About></About>
               </ProtectedRoute>
             }
           />
