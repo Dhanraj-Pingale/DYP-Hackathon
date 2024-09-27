@@ -2,7 +2,13 @@ import React from 'react'
 
 const Adashboard = () => {
   return (
-    <div>Adashboard</div>
+    <>
+    <div className='h-screen w-screen '>
+
+    </div>
+    
+    
+    </>
   )
 }
 
