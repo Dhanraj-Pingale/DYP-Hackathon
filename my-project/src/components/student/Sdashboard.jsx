@@ -110,7 +110,7 @@ const Sdashboard = () => {
               {events.map((event) => (
                 <div
                   key={event._id}
-                  className="flex flex-col items-center bg-orange-200 w-[300px] h-auto text-gray-900 p-8 rounded-xl shadow-lg transform transition-transform duration-200 hover:scale-105"
+                  className="flex flex-col items-center bg-orange-300 w-[300px] h-auto text-gray-900 p-8 rounded-xl shadow-lg transform transition-transform duration-200 hover:scale-105"
                 >
                   <h2 className="text-2xl font-bold mb-8 text-gray-800">{event.clubName}</h2>
                   <div className="w-full h-full flex flex-col items-start gap-2 text-lg text-gray-600">

@@ -70,7 +70,7 @@ const StudentAttendance = ({ teacherCode }) => {
     };
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-green-100 to-green-300 p-4">
+        <div className="flex flex-col items-center justify-center min-h-screen bg-orange-300 p-4">
             <h1 className="text-4xl font-bold mb-6 text-gray-800">Student Attendance Page</h1>
 
             <form 
@@ -83,7 +83,7 @@ const StudentAttendance = ({ teacherCode }) => {
                     onChange={(e) => setName(e.target.value)}
                     placeholder="Your Name"
                     required
-                    className="w-full p-2 mb-4 border border-gray-300 rounded"
+                    className="w-full p-2 mb-4 border bg-white border-gray-300 rounded"
                 />
                 
                 <input
@@ -92,14 +92,14 @@ const StudentAttendance = ({ teacherCode }) => {
                     onChange={(e) => setCode(e.target.value)}
                     placeholder="Enter Attendance Code"
                     required
-                    className="w-full p-2 mb-4 border border-gray-300 rounded"
+                    className="w-full p-2 mb-4 border bg-white border-gray-300 rounded"
                 />
                 
                 {error && <div className="text-red-600 mb-4">{error}</div>}
                 
                 <button 
                     type="submit" 
-                    className="w-full px-4 py-2 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-500 transition"
+                    className="w-full px-4 py-2 bg-[#00acd6] text-white rounded-lg shadow-md  transition"
                 >
                     Submit
                 </button>
