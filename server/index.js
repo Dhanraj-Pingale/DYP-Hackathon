@@ -218,10 +218,13 @@ async function main() {
       )
     );
 
+    
+
     // Event creation route
     app.post("/events", async (req, res) => {
       const {
         clubID,
+        clubName,
         eventName,
         eventDescription,
         eventDate,
@@ -232,6 +235,7 @@ async function main() {
       // Ensure all fields are provided
       if (
         !clubID ||
+        !clubName ||
         !eventName ||
         !eventDescription ||
         !eventDate ||
@@ -245,6 +249,7 @@ async function main() {
         // Insert new event into the "events" collection
         const result = await eventsCollection.insertOne({
           clubID,
+          clubName,
           eventName,
           eventDescription,
           eventDate,
@@ -259,6 +264,16 @@ async function main() {
         });
       } catch (error) {
         console.error("Error creating event:", error);
+        res.status(500).json({ error: "Internal Server Error" });
+      }
+    });
+
+    app.get("/events", async (req, res) => {
+      try {
+        const events = await eventsCollection.find({}).toArray(); 
+        res.status(200).json(events);
+      } catch (error) {
+        console.error("Error fetching events:", error);
         res.status(500).json({ error: "Internal Server Error" });
       }
     });
