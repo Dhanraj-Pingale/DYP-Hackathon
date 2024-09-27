@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
 
-const Login = () => {
+const ALogin = () => {
   const { login } = useContext(AuthContext); // Use login function from AuthContext
   const [adminID, setAdminID] = useState("");
   const [email, setEmail] = useState("");
@@ -100,4 +100,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default ALogin;
