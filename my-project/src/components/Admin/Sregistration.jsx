@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const Sregistration = () => {
-  const [name, setName] = useState("");
+  const [studentName, setName] = useState("");
   const [studentID, setStudentID] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -14,11 +14,7 @@ const Sregistration = () => {
     e.preventDefault();
 
     axios
-<<<<<<< HEAD
-      .post("http://localhost:3000/studentregisterdb", { name, email, password })
-=======
-      .post("http://localhost:3000/registerdb", { name, studentID, password })
->>>>>>> 84e7b075630c9567108b16dfda78cc8af47655fd
+      .post("http://localhost:3000/studentregisterdb", { studentName, studentID, password })
       .then((result) => {
         console.log(result);
         navigate("/adashboard");

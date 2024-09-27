@@ -13,6 +13,7 @@ import Adashboard from "./components/Admin/Adashboard";
 import SLogin from "./components/student/SLogin";
 import Cregistration from "./components/Admin/Cregistration";
 import Tregistration from "./components/Admin/Tregistration";
+import Sregistration from "./components/Admin/Sregistration";
 
 const App = () => {
   return (
@@ -29,6 +30,7 @@ const App = () => {
           <Route path="/slogin" element={<SLogin></SLogin>} />
           <Route path="/cregister" element={<Cregistration></Cregistration>} />
           <Route path="/tregister" element={<Tregistration></Tregistration>} />
+          <Route path="/sregister" element={<Sregistration></Sregistration>} />
           {/* Protected Route */}
           <Route
             path="/"
