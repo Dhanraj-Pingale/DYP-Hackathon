@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'; // Import useNavigate
 const AddEventForm = () => {
   const [formData, setFormData] = useState({
     clubID: '',
+    clubName: '',
     eventName: '',
     eventDescription: '',
     eventDate: '',
@@ -50,6 +51,19 @@ const AddEventForm = () => {
               onChange={handleChange}
               className="w-full px-4 py-2 border bg-white border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300"
               placeholder="Enter Club ID"
+            />
+          </div>
+
+          {/* Club Name */}
+          <div className="mb-6">
+            <label className="block bg-white text-gray-700 font-semibold mb-2">Club Name</label>
+            <input
+              type="text"
+              name="clubName"
+              value={formData.clubName}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border bg-white border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300"
+              placeholder="Enter Club Name"
             />
           </div>
 
