@@ -85,7 +85,7 @@ const ALogin = () => {
           <p className="mt-4 text-green-600 text-center">{message}</p>
         )}
 
-        {/* Register option
+        Register option
         <div className="mt-6 text-center">
           <p className="text-gray-600">Don't have an account?</p>
           <p
@@ -94,7 +94,7 @@ const ALogin = () => {
           >
             Register here
           </p>
-        </div> */}
+        </div>
       </div>
     </div>
   );
