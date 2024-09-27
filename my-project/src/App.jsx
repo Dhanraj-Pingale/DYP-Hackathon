@@ -6,6 +6,7 @@ import Homepage from "./components/homepages/Homepage";
 import ProtectedRoute from "./components/authentications/ProtectedRoute";
 import AuthProvider from "./context/AuthContext";
 import About from "./components/homepages/About";
+import ALogin from "./components/Admin/ALogin";
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/alogin" element={<ALogin></ALogin>} />
           {/* Protected Route */}
           <Route
             path="/"

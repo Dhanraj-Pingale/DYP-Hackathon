@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Login = () => {
+const CLogin = () => {
   return (
     <div>Login</div>
   )
 }
 
-export default Login
+export default CLogin
