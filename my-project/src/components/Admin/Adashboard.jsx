@@ -11,7 +11,7 @@ const Adashboard = () => {
   return (
     <div className="flex h-screen bg-white text-zinc-600">
       {/* Sidebar */}
-      <div className={`relative min-h-full ${isOpen ? 'w-80' : 'w-20'} bg-gray-300 duration-300`}>
+      <div className={`relative min-h-full ${isOpen ? 'w-80' : 'w-20'} bg-blue-300 duration-300`}>
         <div className="absolute top-0 right-0 p-4">
           <button onClick={toggleSidebar} className="text-3xl">
             {isOpen ? '<<' : '>>'} {/* Simple text for toggle */}
@@ -30,7 +30,7 @@ const Adashboard = () => {
             <span className="text-xl mr-4">🏢</span>
             {isOpen && <span>Register Club</span>}
           </Link>
-          <Link to="/cregister" className="hover:text-gray-900 flex items-center">
+          <Link to="/anotice" className="hover:text-gray-900 flex items-center">
             <span className="text-xl mr-4">📜</span>
             {isOpen && <span>Display Notice</span>}
           </Link>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import club from "../../Assets/club2.webp"
+import club from "../../Assets/club2.jpg"
 
 const Cregistration = () => {
   const [clubName, setName] = useState("");

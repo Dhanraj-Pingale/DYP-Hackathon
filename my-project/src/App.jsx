@@ -18,6 +18,7 @@ import Tdashboard from "./components/teacher/tdashboard";
 import CDashboard from "./components/club/CDashboard";
 import AddEventForm from "./components/club/AddEventForm";
 import Sdashboard from "./components/student/Sdashboard";
+import Anotice from "./components/Admin/Anotice"
 import AddClubDetails from "./components/club/AddClubDetails";
 import TeacherAttendance from "./components/teacher/Tattendance";
 import Timetable from "./components/Admin/Timetable";
@@ -35,6 +36,8 @@ const App = () => {
           <Route path="/clogin" element={<CLogin></CLogin>} />
           <Route path="/adashboard" element={<Adashboard />} />
           <Route path="/sdashboard" element={<Sdashboard />} />
+
+
           
 
           <Route path="/tdashboard" element={<Tdashboard />} />
@@ -44,6 +47,7 @@ const App = () => {
           <Route path="/tregister" element={<Tregistration></Tregistration>} />
           <Route path="/sregister" element={<Sregistration></Sregistration>} />
           <Route path="/add-event" element={<AddEventForm />} />
+          <Route path="/anotice" element={<Anotice />} />
           <Route path="/add-club-details" element={<AddClubDetails />} />
           <Route path="/tattendance" element={<TeacherAttendance></TeacherAttendance>}></Route>
           <Route path="/timetable" element={<Timetable></Timetable>}></Route>

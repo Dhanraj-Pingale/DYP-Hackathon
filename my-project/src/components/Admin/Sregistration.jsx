@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import student from "../../Assets/student.jpg"
+import student from "../../Assets/students2.jpeg"
 
 const Sregistration = () => {
   const [studentName, setName] = useState("");

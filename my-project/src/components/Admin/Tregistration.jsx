@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import teacher from "../../Assets/classroom1.jpg"
+import teacher from "../../Assets/teacher3.webp"
 
 const Tregistration = () => {
   const [teacherName, setName] = useState("");
