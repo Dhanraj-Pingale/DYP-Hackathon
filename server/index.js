@@ -43,6 +43,7 @@ async function main() {
 
     const usersCollection = client.db("Test").collection("users");
     const adminCollection = client.db("CollegeAdmin").collection("admins");
+    const timetableCollection = client.db("TimetableDB").collection("timetable"); // Collection for timetable
 
     // Passport Local Strategy for User
     passport.use(
@@ -154,7 +155,7 @@ async function main() {
       passport.authenticate("user-local", (err, user, info) => {
         if (err) return next(err);
         if (!user) return res.status(400).json({ error: info.message });
-        
+
         req.login(user, (loginErr) => {
           if (loginErr) return next(loginErr);
           res.json({
@@ -173,7 +174,7 @@ async function main() {
       passport.authenticate("admin-local", (err, admin, info) => {
         if (err) return next(err);
         if (!admin) return res.status(400).json({ error: info.message });
-        
+
         req.login(admin, (loginErr) => {
           if (loginErr) return next(loginErr);
           res.json({
@@ -194,6 +195,60 @@ async function main() {
         }
         res.json({ message: "Logged out successfully" });
       });
+    });
+
+    // POST route to add a new timetable entry
+    app.post("/add-timetable", async (req, res) => {
+      const {
+        class: className,
+        division,
+        batch,
+        subject,
+        teacherId,
+        teacherName,
+        roomNumber,
+        day,
+        startTime,
+        endTime,
+        classCancelledByTeacher,
+        adminId,
+      } = req.body;
+
+      // Validate the input
+      if (!className || !division || !batch || !subject || !teacherId || !teacherName || !roomNumber || !day || !startTime || !endTime || adminId === undefined) {
+        return res.status(400).json({ error: "All fields are required" });
+      }
+
+      try {
+        // Create a new timetable entry object
+        const newTimetableEntry = {
+          class: className,
+          division,
+          batch,
+          subject,
+          teacherId,
+          teacherName,
+          roomNumber,
+          day,
+          startTime,
+          endTime,
+          classCancelledByTeacher: classCancelledByTeacher || false, // Default to false if not provided
+          adminId,
+          createdAt: new Date().toISOString(), // Use current timestamp
+          updatedAt: new Date().toISOString(),
+        };
+
+        // Insert the new timetable entry into the collection
+        const result = await timetableCollection.insertOne(newTimetableEntry);
+
+        res.status(201).json({
+          message: "Timetable entry added successfully",
+          timetableId: result.insertedId,
+        });
+      } catch (error) {
+        console.error("Error adding timetable entry:", error);
+        res.status(500).json({ error: "Internal Server Error" });
+      }
     });
   } catch (e) {
     console.error("Error connecting to MongoDB:", e);
