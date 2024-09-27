@@ -20,7 +20,7 @@ const SLogin = () => {
 
     try {
       // API call to authenticate user
-      const response = await axios.post("http://localhost:3000/teacherlogindb", {
+      const response = await axios.post("http://localhost:3000/studentlogindb", {
         studentID,
         password,
       });

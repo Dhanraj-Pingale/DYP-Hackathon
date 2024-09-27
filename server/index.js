@@ -45,117 +45,176 @@ async function main() {
     const adminCollection = client.db("CollegeAdmin").collection("admins");
     const teacherCollection = client.db("teacher").collection("teachers");
     const clubCollection = client.db("club").collection("clubs");
+    const studentCollection = client.db("student").collection("students");
+
+    // Passport Local Strategy for Student
+    passport.use(
+      "student-local",
+      new LocalStrategy(
+        { usernameField: "studentID" },
+        async (studentID, password, done) => {
+          try {
+            const student = await studentCollection.findOne({ studentID });
+            if (!student) {
+              console.log("Student not found");
+              return done(null, false, { message: "Incorrect student ID." });
+            }
+
+            // Compare the password using bcrypt
+            const isValidStudentPassword = await bcrypt.compare(
+              password,
+              student.password
+            );
+
+            if (!isValidStudentPassword) {
+              console.log("Student password does not match");
+              return done(null, false, { message: "Incorrect password." });
+            }
+
+            console.log("Student login successful");
+            return done(null, student);
+          } catch (error) {
+            console.error("Error during student login:", error);
+            return done(error);
+          }
+        }
+      )
+    );
 
     // Passport Local Strategy for User
     passport.use(
       "user-local",
-      new LocalStrategy({ usernameField: "email" }, async (email, password, done) => {
-        try {
-          const user = await usersCollection.findOne({ email });
-          if (!user) {
-            console.log("User not found");
-            return done(null, false, { message: "Incorrect email." });
+      new LocalStrategy(
+        { usernameField: "email" },
+        async (email, password, done) => {
+          try {
+            const user = await usersCollection.findOne({ email });
+            if (!user) {
+              console.log("User not found");
+              return done(null, false, { message: "Incorrect email." });
+            }
+
+            // Compare the password using bcrypt
+            const isValidPassword = await bcrypt.compare(
+              password,
+              user.password
+            );
+
+            if (!isValidPassword) {
+              console.log("Password does not match");
+              return done(null, false, { message: "Incorrect password." });
+            }
+
+            console.log("User login successful");
+            return done(null, user);
+          } catch (error) {
+            console.error("Error during user login:", error);
+            return done(error);
           }
-
-          // Compare the password using bcrypt
-          const isValidPassword = await bcrypt.compare(password, user.password);
-
-          if (!isValidPassword) {
-            console.log("Password does not match");
-            return done(null, false, { message: "Incorrect password." });
-          }
-
-          console.log("User login successful");
-          return done(null, user);
-        } catch (error) {
-          console.error("Error during user login:", error);
-          return done(error);
         }
-      })
+      )
     );
 
     // Passport Local Strategy for Admin
     passport.use(
       "admin-local",
-      new LocalStrategy({ usernameField: "adminID" }, async (adminID, password, done) => {
-        try {
-          const admin = await adminCollection.findOne({ adminID });
-          if (!admin) {
-            console.log("Admin not found");
-            return done(null, false, { message: "Incorrect admin ID." });
+      new LocalStrategy(
+        { usernameField: "adminID" },
+        async (adminID, password, done) => {
+          try {
+            const admin = await adminCollection.findOne({ adminID });
+            if (!admin) {
+              console.log("Admin not found");
+              return done(null, false, { message: "Incorrect admin ID." });
+            }
+
+            // Compare the password using bcrypt
+            const isValidAdminPassword = await bcrypt.compare(
+              password,
+              admin.password
+            );
+
+            if (!isValidAdminPassword) {
+              console.log("Admin password does not match");
+              return done(null, false, { message: "Incorrect password." });
+            }
+
+            console.log("Admin login successful");
+            return done(null, admin);
+          } catch (error) {
+            console.error("Error during admin login:", error);
+            return done(error);
           }
-
-          // Compare the password using bcrypt
-          const isValidAdminPassword = await bcrypt.compare(password, admin.password);
-
-          if (!isValidAdminPassword) {
-            console.log("Admin password does not match");
-            return done(null, false, { message: "Incorrect password." });
-          }
-
-          console.log("Admin login successful");
-          return done(null, admin);
-        } catch (error) {
-          console.error("Error during admin login:", error);
-          return done(error);
         }
-      })
+      )
     );
 
     // Passport Local Strategy for Teacher
     passport.use(
       "teacher-local",
-      new LocalStrategy({ usernameField: "teacherID" }, async (teacherID, password, done) => {
-        try {
-          const teacher = await teacherCollection.findOne({ teacherID });
-          if (!teacher) {
-            console.log("Teacher not found");
-            return done(null, false, { message: "Incorrect teacher ID." });
+      new LocalStrategy(
+        { usernameField: "teacherID" },
+        async (teacherID, password, done) => {
+          try {
+            const teacher = await teacherCollection.findOne({ teacherID });
+            if (!teacher) {
+              console.log("Teacher not found");
+              return done(null, false, { message: "Incorrect teacher ID." });
+            }
+
+            // Compare the password using bcrypt
+            const isValidTeacherPassword = await bcrypt.compare(
+              password,
+              teacher.password
+            );
+
+            if (!isValidTeacherPassword) {
+              console.log("Teacher password does not match");
+              return done(null, false, { message: "Incorrect password." });
+            }
+
+            console.log("Teacher login successful");
+            return done(null, teacher);
+          } catch (error) {
+            console.error("Error during teacher login:", error);
+            return done(error);
           }
-
-          // Compare the password using bcrypt
-          const isValidTeacherPassword = await bcrypt.compare(password, teacher.password);
-
-          if (!isValidTeacherPassword) {
-            console.log("Teacher password does not match");
-            return done(null, false, { message: "Incorrect password." });
-          }
-
-          console.log("Teacher login successful");
-          return done(null, teacher);
-        } catch (error) {
-          console.error("Error during teacher login:", error);
-          return done(error);
         }
-      })
+      )
     );
 
     // Passport Local Strategy for Club
     passport.use(
       "club-local",
-      new LocalStrategy({ usernameField: "clubID" }, async (clubID, password, done) => {
-        try {
-          const club = await clubCollection.findOne({ clubID });
-          if (!club) {
-            console.log("Club not found");
-            return done(null, false, { message: "Incorrect club ID." });
+      new LocalStrategy(
+        { usernameField: "clubID" },
+        async (clubID, password, done) => {
+          try {
+            const club = await clubCollection.findOne({ clubID });
+            if (!club) {
+              console.log("Club not found");
+              return done(null, false, { message: "Incorrect club ID." });
+            }
+
+            // Compare the password using bcrypt
+            const isValidClubPassword = await bcrypt.compare(
+              password,
+              club.password
+            );
+
+            if (!isValidClubPassword) {
+              console.log("Club password does not match");
+              return done(null, false, { message: "Incorrect password." });
+            }
+
+            console.log("Club login successful");
+            return done(null, club);
+          } catch (error) {
+            console.error("Error during club login:", error);
+            return done(error);
           }
-
-          // Compare the password using bcrypt
-          const isValidClubPassword = await bcrypt.compare(password, club.password);
-
-          if (!isValidClubPassword) {
-            console.log("Club password does not match");
-            return done(null, false, { message: "Incorrect password." });
-          }
-
-          console.log("Club login successful");
-          return done(null, club);
-        } catch (error) {
-          console.error("Error during club login:", error);
-          return done(error);
         }
-      })
+      )
     );
 
     // Serialize and deserialize user for session support
@@ -171,7 +230,9 @@ async function main() {
         const admin = await adminCollection.findOne({ _id: new ObjectId(id) });
         if (admin) return done(null, admin);
 
-        const teacher = await teacherCollection.findOne({ _id: new ObjectId(id) });
+        const teacher = await teacherCollection.findOne({
+          _id: new ObjectId(id),
+        });
         if (teacher) return done(null, teacher);
 
         const club = await clubCollection.findOne({ _id: new ObjectId(id) });
@@ -221,7 +282,7 @@ async function main() {
       passport.authenticate("user-local", (err, user, info) => {
         if (err) return next(err);
         if (!user) return res.status(400).json({ error: info.message });
-        
+
         req.login(user, (loginErr) => {
           if (loginErr) return next(loginErr);
           res.json({
@@ -235,12 +296,30 @@ async function main() {
       })(req, res, next);
     });
 
+    // Student login route
+    app.post("/studentlogindb", (req, res, next) => {
+      passport.authenticate("student-local", (err, student, info) => {
+        if (err) return next(err);
+        if (!student) return res.status(400).json({ error: info.message });
+
+        req.login(student, (loginErr) => {
+          if (loginErr) return next(loginErr);
+          res.json({
+            message: "Student logged in successfully",
+            student: {
+              studentID: req.user.studentID,
+            },
+          });
+        });
+      })(req, res, next);
+    });
+
     // Admin login route
     app.post("/adminlogindb", (req, res, next) => {
       passport.authenticate("admin-local", (err, admin, info) => {
         if (err) return next(err);
         if (!admin) return res.status(400).json({ error: info.message });
-        
+
         req.login(admin, (loginErr) => {
           if (loginErr) return next(loginErr);
           res.json({
@@ -258,7 +337,7 @@ async function main() {
       passport.authenticate("teacher-local", (err, teacher, info) => {
         if (err) return next(err);
         if (!teacher) return res.status(400).json({ error: info.message });
-        
+
         req.login(teacher, (loginErr) => {
           if (loginErr) return next(loginErr);
           res.json({
