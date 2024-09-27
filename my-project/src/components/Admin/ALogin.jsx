@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
+import image2 from "../../Assets/DYP3.jpeg"
 
 const ALogin = () => {
   const { login } = useContext(AuthContext); // Use login function from AuthContext
@@ -27,7 +28,7 @@ const ALogin = () => {
 
       if (response.status === 200) {
         login(); // Set user as authenticated in AuthContext
-        navigate("/"); // Redirect to homepage
+        navigate("/adashboard"); // Redirect to homepage
       } else {
         setError("Invalid credentials");
       }
@@ -42,19 +43,26 @@ const ALogin = () => {
   
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="bg-white p-8 rounded-lg shadow-md w-80">
-        <h2 className="text-3xl font-semibold mb-4 text-center">Login</h2>
+    <div  className="flex items-center justify-center min-h-screen bg-gray-100 absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${image2})` }}
+    > 
+    <div className="absolute z-40 inset-0 bg-black opacity-50" />
+    
+      <div  className=   "bg-white z-50 p-8 rounded-lg shadow-md w-80">
+        <h2 className="text-3xl font-semibold mb-4 text-center text-zinc-600"> Admin Login</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <input
-              type="number"
-              value={adminID}
-              onChange={(e) => setAdminID(e.target.value)}
-              placeholder="adminID"
-              required
-              className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-300"
-            />
+          <input
+  type="number"
+  value={adminID}
+  onChange={(e) => setAdminID(e.target.value)}
+  placeholder="adminID"
+  required
+  className="bg-white w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-300"
+  style={{
+    appearance: "textfield", // Removes spinner in most browsers
+  }}
+/>
+
           </div>
           <div className="mb-4">
             <input
@@ -63,12 +71,12 @@ const ALogin = () => {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Password"
               required
-              className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-300"
+              className=" bg-white w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-300"
             />
           </div>
           <button
             type="submit"
-            className="w-full p-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-200"
+            className="w-full p-2 bg-[#00ACD6] text-white rounded-md hover:bg-[#329db7] transition duration-200"
             disabled={loading} // Disable button during loading
           >
             {loading ? "Logging in..." : "Login"}

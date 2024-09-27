@@ -2,6 +2,8 @@ import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
+import image2 from "../../Assets/DYP3.jpeg"
+
 
 const CLogin = () => {
   const { login } = useContext(AuthContext); // Use login function from AuthContext
@@ -42,9 +44,10 @@ const CLogin = () => {
   
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="bg-white p-8 rounded-lg shadow-md w-80">
-        <h2 className="text-2xl font-semibold mb-4 text-center">Login</h2>
+    <div className="flex items-center justify-center min-h-screen bg-gray-100 absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${image2})` }}>
+         <div className="absolute z-40 inset-0 bg-black opacity-50" />
+      <div className="bg-white  z-50 p-8 rounded-lg shadow-md w-80">
+        <h2 className="text-3xl font-semibold mb-4 text-center text-zinc-600"> Club Login</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <input
@@ -53,7 +56,7 @@ const CLogin = () => {
               onChange={(e) => setClubID(e.target.value)}
               placeholder="clubID"
               required
-              className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-300"
+              className="w-full p-2 border bg-white border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-300"
             />
           </div>
           <div className="mb-4">
@@ -63,12 +66,12 @@ const CLogin = () => {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Password"
               required
-              className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-300"
+              className="w-full p-2 bg-white border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-300"
             />
           </div>
           <button
             type="submit"
-            className="w-full p-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-200"
+            className="w-full p-2 bg-[#00ACD6] text-white rounded-md hover:bg-[#329db7] transition duration-200"
             disabled={loading} // Disable button during loading
           >
             {loading ? "Logging in..." : "Login"}
