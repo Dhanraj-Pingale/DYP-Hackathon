@@ -277,6 +277,111 @@ async function main() {
       }
     });
 
+    // Register student route
+    app.post("/studentregisterdb", async (req, res) => {
+      const { studentName, studentID, password } = req.body;
+
+      // Ensure all fields are provided
+      if (!studentName || !studentID || !password) {
+        return res.status(400).json({ error: "All fields are required" });
+      }
+
+      try {
+        // Check if the student already exists
+        const existingStudent = await studentCollection.findOne({ studentID }); // Fixed collection reference
+        if (existingStudent) {
+          return res.status(400).json({ error: "Student already exists" });
+        }
+
+        // Hash the password before storing
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        // Insert new student into the "students" collection
+        const result = await studentCollection.insertOne({
+          studentName,
+          studentID,
+          password: hashedPassword,
+        });
+        res.status(201).json({
+          message: "Student registered successfully",
+          userId: result.insertedId,
+        });
+      } catch (error) {
+        console.error("Error registering student:", error);
+        res.status(500).json({ error: "Internal Server Error" });
+      }
+    });
+
+    // Register teacher route
+    app.post("/teacherregisterdb", async (req, res) => {
+      const { teacherName, teacherID, password } = req.body;
+
+      // Ensure all fields are provided
+      if (!teacherName || !teacherID || !password) {
+        return res.status(400).json({ error: "All fields are required" });
+      }
+
+      try {
+        // Check if the teacher already exists
+        const existingTeacher = await teacherCollection.findOne({ teacherID });
+        if (existingTeacher) {
+          return res.status(400).json({ error: "Teacher already exists" });
+        }
+
+        // Hash the password before storing
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        // Insert new teacher into the "teachers" collection
+        const result = await teacherCollection.insertOne({
+          teacherName,
+          teacherID,
+          password: hashedPassword,
+        });
+        res.status(201).json({
+          message: "Teacher registered successfully",
+          userId: result.insertedId,
+        });
+      } catch (error) {
+        console.error("Error registering teacher:", error);
+        res.status(500).json({ error: "Internal Server Error" });
+      }
+    });
+
+    // Register club route
+    app.post("/clubregisterdb", async (req, res) => {
+      const { clubName, clubID, password } = req.body;
+
+      // Ensure all fields are provided
+      if (!clubName || !clubID || !password) {
+        return res.status(400).json({ error: "All fields are required" });
+      }
+
+      try {
+        // Check if the club already exists
+        const existingClub = await clubCollection.findOne({ clubID }); // Fixed collection reference
+        if (existingClub) {
+          return res.status(400).json({ error: "Club already exists" });
+        }
+
+        // Hash the password before storing
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        // Insert new club into the "clubs" collection
+        const result = await clubCollection.insertOne({
+          clubName,
+          clubID,
+          password: hashedPassword,
+        });
+        res.status(201).json({
+          message: "Club registered successfully",
+          userId: result.insertedId,
+        });
+      } catch (error) {
+        console.error("Error registering club:", error);
+        res.status(500).json({ error: "Internal Server Error" });
+      }
+    });
+
     // User login route
     app.post("/logindb", (req, res, next) => {
       passport.authenticate("user-local", (err, user, info) => {
