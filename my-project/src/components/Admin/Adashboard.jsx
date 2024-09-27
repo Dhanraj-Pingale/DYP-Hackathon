@@ -11,7 +11,7 @@ const Adashboard = () => {
   return (
     <div className="flex h-screen bg-white text-zinc-600">
       {/* Sidebar */}
-      <div className={`relative min-h-full ${isOpen ? 'w-80' : 'w-20'} bg-gray-300 duration-300`}>
+      <div className={`relative min-h-full ${isOpen ? 'w-80' : 'w-20'} bg-blue-300 duration-300`}>
         <div className="absolute top-0 right-0 p-4">
           <button onClick={toggleSidebar} className="text-3xl">
             {isOpen ? '<<' : '>>'} {/* Simple text for toggle */}
