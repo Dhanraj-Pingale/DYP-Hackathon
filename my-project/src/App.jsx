@@ -14,6 +14,7 @@ import SLogin from "./components/student/SLogin";
 import Cregistration from "./components/Admin/Cregistration";
 import Tregistration from "./components/Admin/Tregistration";
 import Sregistration from "./components/Admin/Sregistration";
+import Sdashboard from "./components/student/Sdashboard";
 
 const App = () => {
   return (
@@ -27,6 +28,7 @@ const App = () => {
           <Route path="/tlogin" element={<TLogin></TLogin>} />
           <Route path="/clogin" element={<CLogin></CLogin>} />
           <Route path="/adashboard" element={<Adashboard />} />
+          <Route path="/sdashboard" element={<Sdashboard />} />
           <Route path="/slogin" element={<SLogin></SLogin>} />
           <Route path="/cregister" element={<Cregistration></Cregistration>} />
           <Route path="/tregister" element={<Tregistration></Tregistration>} />
