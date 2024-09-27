@@ -30,7 +30,7 @@ const Adashboard = () => {
             <span className="text-xl mr-4">🏢</span>
             {isOpen && <span>Register Club</span>}
           </Link>
-          <Link to="/cregister" className="hover:text-gray-900 flex items-center">
+          <Link to="/anotice" className="hover:text-gray-900 flex items-center">
             <span className="text-xl mr-4">📜</span>
             {isOpen && <span>Display Notice</span>}
           </Link>

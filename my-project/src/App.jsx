@@ -18,6 +18,7 @@ import Tdashboard from "./components/teacher/tdashboard";
 import CDashboard from "./components/club/CDashboard";
 import AddEventForm from "./components/club/AddEventForm";
 import Sdashboard from "./components/student/Sdashboard";
+import Anotice from "./components/Admin/Anotice"
 
 
 const App = () => {
@@ -33,6 +34,8 @@ const App = () => {
           <Route path="/clogin" element={<CLogin></CLogin>} />
           <Route path="/adashboard" element={<Adashboard />} />
           <Route path="/sdashboard" element={<Sdashboard />} />
+
+
           
 
           <Route path="/tdashboard" element={<Tdashboard />} />
@@ -42,6 +45,7 @@ const App = () => {
           <Route path="/tregister" element={<Tregistration></Tregistration>} />
           <Route path="/sregister" element={<Sregistration></Sregistration>} />
           <Route path="/add-event" element={<AddEventForm />} />
+          <Route path="/anotice" element={<Anotice />} />
           {/* Protected Route */}
           <Route
             path="/"

@@ -14,7 +14,7 @@ const Sdashboard = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/events'); // Adjust URL as needed
+        const response = await axios.get('http://localhost:3000/events');
         setEvents(response.data);
       } catch (error) {
         console.error('Error fetching events:', error);
@@ -64,7 +64,7 @@ const Sdashboard = () => {
               <div key={event._id} className="bg-gray-800 text-white p-4 rounded shadow-lg">
                 <h2 className="text-lg">{event.clubName}</h2>
                 <p>{event.eventName}</p>
-                <p>{event.description}</p>
+                <p>{event.eventDescription}</p>
                 <p>{event.eventDate}</p>
                 <p>{event.eventTime}</p>
                 <p>{event.eventVenue}</p>
